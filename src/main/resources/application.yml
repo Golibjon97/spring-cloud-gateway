@@ -11,11 +11,21 @@ spring:
           uri: lb://resource-service
           predicates:
             - Path=/api/v1/resources/**
+          filters:
+            - RewritePath=/api/v1/resources/actuator/prometheus, /actuator/prometheus
+
         - id: songService
           uri: lb://song-service
           predicates:
             - Path=/api/v1/song/**
+          filters:
+            - RewritePath=/api/v1/song/actuator/prometheus, /actuator/prometheus
+
+        - id: storageService
+          uri: lb://storage-service
+          predicates:
+            - Path=/api/v1/storages/**
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA:localhost}:8761/eureka

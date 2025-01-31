@@ -15,12 +15,6 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class CustomGlobalExceptionHandler implements ErrorWebExceptionHandler {
 
-    private final ServerProperties serverProperties;
-
-    public CustomGlobalExceptionHandler(ServerProperties serverProperties) {
-        this.serverProperties = serverProperties;
-    }
-
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
